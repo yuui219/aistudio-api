@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     file \
     && rm -rf /var/lib/apt/lists/* \
-    && curl -fsSL https://ziglang.org/download/0.16.0/zig-$(uname -m)-linux-0.16.0.tar.xz | tar -xJ -C /opt \
+    && curl -fsSL https://ziglang.org/download/0.17.1/zig-$(uname -m)-linux-0.17.1.tar.xz | tar -xJ -C /opt \
     && mv /opt/zig-* /opt/zig \
     && ln -s /opt/zig/zig /usr/local/bin/zig
 
