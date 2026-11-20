@@ -558,7 +558,7 @@ ensure_spidermonkey_deps() {
   local extract_tmp="${DEPS_DIR}.extracting"
   rm -rf "$extract_tmp"
   mkdir -p "$extract_tmp"
-  tar -xzf "$temp_tar" -C "$extract_tmp"
+  tar --no-same-owner -xzf "$temp_tar" -C "$extract_tmp"
   rm -f "$temp_tar"
 
   if [ ! -f "${extract_tmp}/lib/libjs_static.a" ] || [ ! -f "${extract_tmp}/include/jsapi.h" ]; then
