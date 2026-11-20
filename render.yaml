@@ -1,0 +1,38 @@
+services:
+  - type: web
+    name: aistudio-api
+    runtime: docker
+    plan: free
+    region: oregon
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    # Upstream Dockerfile hard-codes 8080 in CMD; override it for Render.
+    dockerCommand: python3 main.py server --port 10000
+    healthCheckPath: /health
+    envVars:
+      - key: PORT
+        value: "10000"
+      - key: AISTUDIO_PORT
+        value: "10000"
+      - key: AISTUDIO_WEB_PASSWORD
+        sync: false
+      - key: AISTUDIO_DATA_DIR
+        value: /app/data
+      - key: AISTUDIO_ACCOUNTS_DIR
+        value: /app/data/accounts
+      - key: AISTUDIO_STATS_FILE
+        value: /app/data/stats.json
+      - key: AISTUDIO_ROTATOR_STATE_FILE
+        value: /app/data/rotator_state.json
+      - key: AISTUDIO_CONFIG_FILE
+        value: /app/data/config.yaml
+      - key: AISTUDIO_TIMEZONE
+        value: America/Los_Angeles
+      - key: AISTUDIO_PERSIST_STATS
+        value: "true"
+      - key: AISTUDIO_PERSIST_ROTATOR
+        value: "true"
+      - key: AISTUDIO_DUMP_REQUESTS
+        value: "false"
+      - key: AISTUDIO_DUMP_FILE
+        value: "false"
